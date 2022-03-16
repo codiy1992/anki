@@ -1,73 +1,16 @@
 """
-anki-addon: open field contents in WYSIWYG-Editor (like TinyMCE)
-
-Copyright (c) 2019- ignd
-          (c) Ankitects Pty Ltd and contributors
-          (c) 2018 Hyun Woo Park
-                   (the cloze functions in template file are taken from
-                   https://github.com/phu54321/kian which is AGPLv3) 
-
-
-This add-on is free software: you can redistribute it and/or modify
-it under the terms of the GNU Affero General Public License as
-published by the Free Software Foundation, either version 3 of the
-License, or (at your option) any later version.
-
-This add-on is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Affero General Public License for more details.
-
-You should have received a copy of the GNU Affero General Public License
-along with this add-on.  If not, see <https://www.gnu.org/licenses/>.
-
-
-This add-on bundles "TinyMCE5" in the folder web/tinymce5
-    Copyright (c) Tiny Technologies, Inc.
-    "TinyMCE" was downloaded from https://download.tiny.cloud/tinymce/community/tinymce_5.10.2.zip
-    "TinyMCE" contains web/tinymce5/js/tinymce/license.txt
-    "TinyMCE" is licensed as LPGL 2.1 (or later)
-
-
-This add-on bundles the file "sync_execJavaScript.py" which has this copyright and permission
-notice: 
-    Original work Copyright (c): 2014 - 2016 Detlev Offenbach <detlev@die-offenbachs.de>
-    Modified work Copyright (c): 2021- ijgnd
-                  (taken from https://github.com/pycom/EricShort/blob/master/UI/Previewers/PreviewerHTML.py)
-    License: GPLv3 or later, https://github.com/pycom/EricShort/blob/025a9933bdbe92f6ff1c30805077c59774fa64ab/LICENSE.GPL3
-
-
-This add-on bundles "jquery-3.5.1.min.js" in the folder web which has this copyright and permission
-notice (jquery.org/license, https://github.com/jquery/jquery/blob/master/LICENSE.txt):
-
-    Copyright OpenJS Foundation and other contributors, https://openjsf.org/
-
-    Permission is hereby granted, free of charge, to any person obtaining
-    a copy of this software and associated documentation files (the
-    "Software"), to deal in the Software without restriction, including
-    without limitation the rights to use, copy, modify, merge, publish,
-    distribute, sublicense, and/or sell copies of the Software, and to
-    permit persons to whom the Software is furnished to do so, subject to
-    the following conditions:
-
-    The above copyright notice and this permission notice shall be
-    included in all copies or substantial portions of the Software.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-    LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-    OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-    WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+license: see license.txt
 """
 
 import os
 import io
 
+from .htmlmin import minify
+
 from anki.hooks import addHook
-from anki.utils import pointVersion
-if pointVersion() >= 50:
+
+from .anki_version_detection import anki_21_version
+if anki_21_version >= 50:
     from anki.utils import is_lin as isLin
 else:
     from anki.utils import isLin
@@ -236,7 +179,7 @@ class ExtraWysiwygEditorForField(QDialog):
     def __init__(self, parent, bodyhtml, jsSavecommand, wintitle, dialogname):
         super(ExtraWysiwygEditorForField, self).__init__(parent)
 
-        if pointVersion() <45:
+        if anki_21_version <= 44:
             mw.setupDialogGC(self)
         else:
             mw.garbage_collect_on_dialog_finish(self)
@@ -284,7 +227,8 @@ class ExtraWysiwygEditorForField(QDialog):
 
     def onAccept(self):
         global editedfieldcontent
-        editedfieldcontent = self.web.sync_execJavaScript(self.jsSavecommand)
+        js_editor_out = self.web.sync_execJavaScript(self.jsSavecommand)
+        editedfieldcontent = maybe_post_process_html(js_editor_out)
         self.web = None
         # self.web._page.windowCloseRequested()  # native qt signal not callable
         # self.web._page.windowCloseRequested.connect(self.web._page.window_close_requested)
@@ -308,6 +252,25 @@ class ExtraWysiwygEditorForField(QDialog):
             event.ignore()
 
 
+def maybe_pre_process_html(html):
+    # tinymce adds nbsp; into empty divs which causes a visual new line for me.
+    # https://stackoverflow.com/questions/42533795/how-to-prevent-tinymce-from-inserting-nbsp-into-empty-elements-without-changin
+    # > you can trick TinyMCE into thinking that an element isn't empty, by inserting a html comment inside it.
+    html = html.replace("<div></div>", "<div><!--1043915942--></div>")
+    html = html.replace("<div> </div>", "<div> <!--1043915942--></div>")
+    return html
+
+
+def maybe_post_process_html(html): 
+    if not gc("format code after closing (minify/compact)", True):
+       return html
+    html = html.replace("<div><!--1043915942--></div>", "<div></div>")
+    html = html.replace("<div> <!--1043915942--></div>", "<div> </div>")
+    # https://htmlmin.readthedocs.io/en/latest/reference.html
+    html = minify(html, remove_empty_space=True, keep_pre=True)
+    return html
+
+     
 def _onWYSIWYGUpdateField(editor):
     global editedfieldcontent
     if not isinstance(editedfieldcontent, str):
@@ -361,7 +324,7 @@ def wysiwyg_dialog(editor, field, editorname):
             "FONTNAME": gc('font'),
             "CUSTOMBGCOLOR": "#e4e2e0",
             "HILITERS": hiliters_tinymce if gc("show background color buttons") else "",
-            "CONTENT": editor.note.fields[field],
+            "CONTENT": maybe_pre_process_html(editor.note.fields[field]),
             }
     if editorname == "T5":
         jssavecmd = "tinyMCE.activeEditor.getContent();"
@@ -376,7 +339,7 @@ def wysiwyg_dialog(editor, field, editorname):
             "SKIN": "oxide-dark" if theme_manager.night_mode else "oxide",
             "THEME": "silver",
             "HILITERS": hiliters_tinymce if gc("show background color buttons") else "",
-            "CONTENT": editor.note.fields[field],
+            "CONTENT": maybe_pre_process_html(editor.note.fields[field]),
             }
     if editorname == "cked4old":
         jssavecmd = "CKEDITOR.instances.cked4_editor.getData();" #""cked4_editor.getData();"
@@ -390,7 +353,7 @@ def wysiwyg_dialog(editor, field, editorname):
             "CUSTOMBGCOLOR": "#2f2f31" if theme_manager.night_mode else "#e4e2e0",
             "CUSTOMCOLOR": "white" if theme_manager.night_mode else "black",
             "SKIN": "moono-dark" if theme_manager.night_mode else "moono",
-            "CONTENT": editor.note.fields[field],
+            "CONTENT": maybe_pre_process_html(editor.note.fields[field]),
             }
     if editorname == "cked4":
         jssavecmd = "CKEDITOR.instances.cked4_editor.getData();" #""cked4_editor.getData();"
@@ -404,7 +367,7 @@ def wysiwyg_dialog(editor, field, editorname):
             "CUSTOMBGCOLOR": "#2f2f31" if theme_manager.night_mode else "#e4e2e0",
             "CUSTOMCOLOR": "white" if theme_manager.night_mode else "black",
             "SKIN": "moono-dark" if theme_manager.night_mode else "moono", # "moono-lisa",
-            "CONTENT": editor.note.fields[field],
+            "CONTENT": maybe_pre_process_html(editor.note.fields[field]),
             }
     if editorname == "cked5":
         """TODO 
