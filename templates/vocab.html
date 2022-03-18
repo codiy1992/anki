@@ -1,0 +1,191 @@
+<html class="webkit chrome chrome77 mac mac10 mac10_16 js night-mode orientation_landscape maxw_640 retina">
+    <head>
+    <title>vocabulary</title>
+    <!-- Copy From Macos Path:  -->
+    <link rel="stylesheet" type="text/css" href="./_anki/css/webview.css">
+    <link rel="stylesheet" type="text/css" href="./_anki/css/reviewer.css">
+    <style>
+    body { zoom: 1; background-color: #2f2f31; direction: ltr; }
+    html { font-size:15px;font-family:"Helvetica"; }
+
+    button { -webkit-appearance: none; background: #fff; border: 1px solid #ccc;
+    border-radius:5px; font-family: Helvetica }
+    :root { --window-bg: #ececec }
+    :root[class*=night-mode] { --window-bg: #2f2f31 }
+    </style>
+    </head>
+
+    <body class="card card1 isMac nightMode night_mode">
+
+        <div id="qa" style="opacity: 1;">
+<!-- ------------------------------------------  style ------------------------------------------  -->
+            <link rel="stylesheet" type="text/css" href="./vocab.css">
+<!-- ------------------------------------------  style ------------------------------------------  -->
+
+<!-- ------------------------------------------  front card ------------------------------------------  -->
+            <script src="./_anki/js/vendor/jquery.min.js"></script>
+
+            <div class="front">
+                <div id="jq-cloze">
+                    <span class="cloze">[...]</span>
+                </div>
+                <center>
+                  <input type="text" id="typeans" onkeypress="_typeAnsPress();" style="font-family: 'Arial'; font-size: 20px;">
+                </center>
+
+                <div class="definitions">
+                    <a class="hint" href="#" onclick="this.style.display='none';
+                        document.getElementById('hint94b5b5f5badee43d').style.display='block';
+                        return false;">
+                        Definitions</a>
+                    <div id="hint94b5b5f5badee43d" class="hint" style="display: none">
+                        <ul>
+                            <li>any of the forms of a verb which show the time at which an action happened</li>
+                        </ul>
+                    </div>
+                </div>
+                <!--
+                <div class="examples">
+                    <ul>
+                        <li>"I sing" is in the present tense and "I sang" is in the past tense.</li>
+                        <li>this is an other example of tense </li>
+                    </ul>
+                </div>
+                -->
+
+                <div class="examples">
+                    "I sing" is in the present tense and "I sang" is in the past tense.
+                    this is an other example of tense
+                </div>
+            </div>
+            <script type="text/javascript">
+                $(document).ready(function(){
+                  var random_cloze = "";
+                  var length = $(".examples ul li").length;
+                  if (length > 0) {
+                      var random = Math.floor(Math.random() * length);
+                      random_cloze = $(".examples ul li").eq(random).text();
+                  } else {
+                      var examples = $(".examples").text().trim().split("\n");
+                      var length = examples.length;
+                      if (length > 0) {
+                          var random = Math.floor(Math.random() * length);
+                          random_cloze = examples[random];
+                      }
+                  }
+                  if (random_cloze != "") {
+                      random_cloze = random_cloze.trim().replace(/tense/gi, "<span class='cloze'>[...]</span>");
+                      $("#jq-cloze").html(random_cloze);
+                  }
+                });
+            </script>
+<!-- ------------------------------------------  front card ------------------------------------------  -->
+
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+
+<!-- ------------------------------------------  back card ------------------------------------------  -->
+            <!-- jQuery 1.8 or later, 33 KB -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+            <!-- Fotorama from CDNJS, 19 KB -->
+            <link  href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+
+            <div class="back">
+                <div class="back-head">
+
+                  <span class="cloze">tense</span>
+
+                  <div class="transcriptions">
+                       /tens/
+                  </div>
+
+                </div>
+
+                <div class="back-body">
+                  <div class="field" style="margin: 0px;" >Audios:
+                  <a class="replay-button soundLink" href="#" onclick="pycmd('play:a:0'); return false;">
+                       <svg class="playImage" viewBox="0 0 64 64" version="1.1">
+                           <circle cx="32" cy="32" r="29"></circle>
+                           <path d="M56.502,32.301l-37.502,20.101l0.329,-40.804l37.173,20.703Z"></path>
+                       </svg>
+                  </a>
+
+                  </div>
+                  <div class="field">Definitions:</div>
+                  <div class="value">
+                    <ul>
+                      <li>any of the forms of a verb which show the time at which an action happened</li>
+                    </ul>
+                  </div>
+
+
+                  <div class="field">Examples:</div>
+                  <div class="value">
+                    <ul>
+                      <li>"I sing" is in the present tense and "I sang" is in the past tense.</li>
+                    </ul>
+                  </div>
+
+
+                  <div class="field">Notes:</div>
+                  <div class="value">
+                    <ul>
+                        <li>any of the forms of a verb which show the time at which an action happened</li>
+                    </ul>
+                  </div>
+
+
+                  <div class="field">Pictures:</div>
+
+                  <div class="fotorama"
+                     data-width="100%"
+                     data-minwidth="400"
+                     data-maxwidth="1000"
+                     data-minheight="300"
+                     data-maxheight="100%"
+                     data-allowfullscreen="true"
+                     data-navposition="top"
+                     data-nav="thumbs">
+                      <img src="https://img.codiy.net/english/2021/07/1e2d81d1591f9f4a552831aba6f918971626681905.jpg">
+                      <img src="https://img.codiy.net/english/2021/07/4aa71d2e6069cf39afb26d0542e5aa781627184985.jpg">
+                      <img src="https://img.codiy.net/english/2021/07/5cdc4a37283788c24765e901b7b506661627201628.jpg">
+                      <img src="https://img.codiy.net/english/2021/07/7d401f6e21252900f0fb5fb5aea8cbbb1627214249.jpg">
+                      <img src="https://img.codiy.net/english/2021/07/6ecc90ab03ef650b5fb53d66ee0639691627135460.jpg">
+                      <img src="https://img.codiy.net/english/2021/07/22cb94d66e79cfa1d3b8319053a4b95f1627128852.jpg">
+                  </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                [].forEach.call(document.querySelectorAll('.definitions'),
+                   function(V0) {
+                      V0.innerHTML = V0.innerHTML
+                      .replace(/(\&nbsp\;)/g,"\ ")
+                      .replace(/(\u00A0)/g,"<br>")
+                      .replace(/(\.\<br\>)/g,"\. ")
+                      .replace(/(\ vi\.\ )/g,"<br><span>〔vi.〕</span>")
+                      .replace(/(a\.\ )/g,"<span>〔a.〕</span>")
+                      .replace(/(vi\.\ )/g,"<span>〔vi.〕</span>")
+                      .replace(/(vt\.\ )/g,"<span>〔vt.〕</span>")
+                      .replace(/(art\.\ )/g,"<span>〔art.〕</span>")
+                      .replace(/(aux\.\ )/g,"<span>〔aux.〕</span>")
+                      .replace(/(adj\.\ )/g,"<span>〔adj.〕</span>")
+                      .replace(/(adv\.\ )/g,"<span>〔adv.〕</span>")
+                      .replace(/(abbr\.\ )/g,"<span>〔abbr.〕</span>")
+                      .replace(/(ad\.\ )/g,"<span>〔ad.〕</span>")
+                      .replace(/(v\.\ )/g,"<span>〔v.〕</span>")
+                      .replace(/(int\.\ )/g,"<span>〔int.〕</span>")
+                      .replace(/(num\.\ )/g,"<span>〔num.〕</span>")
+                      .replace(/(conj\.\ )/g,"<span>〔conj.〕</span>")
+                      .replace(/(prep\.\ )/g,"<span>〔prep.〕</span>")
+                      .replace(/(pron\.\ )/g,"<span>〔pron.〕</span>")
+                      .replace(/(n\.\ )/g,"<span>〔n.〕</span>");
+                });
+            </script>
+<!-- ------------------------------------------  back card ------------------------------------------  -->
+        </div>
+    </body>
+</html>
