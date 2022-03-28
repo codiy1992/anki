@@ -69,6 +69,12 @@
     padding: 10px 0px;
 }
 
+.back-head .part-of-speech {
+    font-size: 14px;
+    line-height: 1em;
+    color: #999;
+}
+
 .back-body {
     background-color: rgb(200, 200, 200);
     padding-top: 10px;
@@ -92,4 +98,15 @@
 .back-body .value {
     font-size: 20px;
     color: rgb(30, 42, 83);
+}
+
+.back-body pre {
+    font-size: 20px;
+    overflow: scroll;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.back-body pre::-webkit-scrollbar {
+    display: none;
 }

@@ -89,16 +89,22 @@
 
 <!-- ------------------------------------------  back card ------------------------------------------  -->
             <!-- jQuery 1.8 or later, 33 KB -->
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+            <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
             <!-- Fotorama from CDNJS, 19 KB -->
             <link  href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
             <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+
+            <link href="https://s3.codiy.net/anki/static/json-viewer/jquery.json-viewer.css" rel="stylesheet" />
+            <script src="https://s3.codiy.net/anki/static/json-viewer/jquery.json-viewer.js" ></script>
 
             <div class="back">
                 <div class="back-head">
 
                   <span class="cloze">tense</span>
 
+                  <div class="part-of-speech">
+                      verb [T]
+                  </div>
                   <div class="transcriptions">
                        /tens/
                   </div>
@@ -157,33 +163,50 @@
                       <img src="https://img.codiy.net/english/2021/07/6ecc90ab03ef650b5fb53d66ee0639691627135460.jpg">
                       <img src="https://img.codiy.net/english/2021/07/22cb94d66e79cfa1d3b8319053a4b95f1627128852.jpg">
                   </div>
+                  <div class="raw-json">
+                      <style>
+                        .json-document {
+                            padding: 0px
+                        }
+                        ul.json-dict, ol.json-array {
+                            padding-left: 0.5em;
+                        }
+                      </style>
+                      <div id="dict-0" style="display: none">
+                          <div class="field">Cambridge Advanced Learner's Dictionary</div>
+                          <pre></pre>
+                      </div>
+                      <div id="dict-1" style="display: none">
+                          <div class="field">Cambridge Academic Content Dictionary</div>
+                          <pre></pre>
+                      </div>
+                      <div id="dict-2" style="display: none">
+                          <div class="field">Cambridge Business English Dictionary</div>
+                          <pre></pre>
+                      </div>
+                  </div>
                 </div>
             </div>
             <script type="text/javascript">
-                [].forEach.call(document.querySelectorAll('.definitions'),
-                   function(V0) {
-                      V0.innerHTML = V0.innerHTML
-                      .replace(/(\&nbsp\;)/g,"\ ")
-                      .replace(/(\u00A0)/g,"<br>")
-                      .replace(/(\.\<br\>)/g,"\. ")
-                      .replace(/(\ vi\.\ )/g,"<br><span>〔vi.〕</span>")
-                      .replace(/(a\.\ )/g,"<span>〔a.〕</span>")
-                      .replace(/(vi\.\ )/g,"<span>〔vi.〕</span>")
-                      .replace(/(vt\.\ )/g,"<span>〔vt.〕</span>")
-                      .replace(/(art\.\ )/g,"<span>〔art.〕</span>")
-                      .replace(/(aux\.\ )/g,"<span>〔aux.〕</span>")
-                      .replace(/(adj\.\ )/g,"<span>〔adj.〕</span>")
-                      .replace(/(adv\.\ )/g,"<span>〔adv.〕</span>")
-                      .replace(/(abbr\.\ )/g,"<span>〔abbr.〕</span>")
-                      .replace(/(ad\.\ )/g,"<span>〔ad.〕</span>")
-                      .replace(/(v\.\ )/g,"<span>〔v.〕</span>")
-                      .replace(/(int\.\ )/g,"<span>〔int.〕</span>")
-                      .replace(/(num\.\ )/g,"<span>〔num.〕</span>")
-                      .replace(/(conj\.\ )/g,"<span>〔conj.〕</span>")
-                      .replace(/(prep\.\ )/g,"<span>〔prep.〕</span>")
-                      .replace(/(pron\.\ )/g,"<span>〔pron.〕</span>")
-                      .replace(/(n\.\ )/g,"<span>〔n.〕</span>");
-                });
+                try {
+                    var dataStr = `[{"dictionary":"Cambridge Advanced Learner's Dictionary \u0026 Thesaurus","word":"prevent","entries":[{"word":"prevent","isIdiom":false,"partOfSpeechs":["verb"],"posLabels":["[T]"],"pronunciations":{"uk":{"ipa":"prɪˈvent","mp3":"https://dictionary.cambridge.org/us/media/english/uk_pron/u/ukp/ukpre/ukprete020.mp3","ogg":"https://dictionary.cambridge.org/us/media/english/uk_pron_ogg/u/ukp/ukpre/ukprete020.ogg"},"us":{"ipa":"prɪˈvent","mp3":"https://dictionary.cambridge.org/us/media/english/us_pron/e/eus/eus73/eus73705.mp3","ogg":"https://dictionary.cambridge.org/us/media/english/us_pron_ogg/e/eus/eus73/eus73705.ogg"}},"definitions":[{"definition":"to stop something from happening or someone from doing something.","images":null,"examples":["Label your suitcases to prevent confusion.","[+ -ing verb] His disability prevents him (from) driving."],"thesauruses":[{"word":"prevent","example":"Vaccination will prevent the spread of the disease."},{"word":"avoid","example":"Label the boxes to avoid confusion."},{"word":"stop","example":"This should stop any further trouble."},{"word":"avert","example":"We had to act quickly to avert disaster."},{"word":"prohibit","example":"Behavioral problems in the classroom prohibit learning."},{"word":"check","example":"Children are being vaccinated in an attempt to check the spread of the disease."}]}],"examples":["The police seem to be powerless to prevent these attacks.","She would go over the accident again and again in her mind, wishing that she could somehow have prevented it.","A block in the pipe was preventing the water from coming through.","Fierce winds prevented the race from taking place.","The law has done little to prevent racial discrimination and inequality."]}],"version":"2022.03.27.1","date":"2022-03-28"},{"dictionary":"Cambridge Academic Content Dictionary(Intermediate English)","word":"prevent","entries":[{"word":"prevent","isIdiom":false,"partOfSpeechs":["verb","adjective","noun"],"posLabels":["[T]","[U]"],"pronunciations":{"us":{"ipa":"prɪˈvent","mp3":"https://dictionary.cambridge.org/us/media/english/us_pron/e/eus/eus73/eus73705.mp3","ogg":"https://dictionary.cambridge.org/us/media/english/us_pron_ogg/e/eus/eus73/eus73705.ogg"}},"definitions":[{"definition":"to stop something from happening or someone from doing something.","images":null,"examples":["The police tried to prevent him from leaving.","Can this type of accident be prevented?"],"thesauruses":null}],"examples":null}],"version":"2022.03.27.1","date":"2022-03-28"}]`;
+                    var data = JSON.parse(dataStr);
+                    data.forEach((element, index) => {
+                        var entries = [];
+                        element['entries'].forEach(e => {
+                            entries.push(Object.keys(e).sort().reduce((r, k) => (r[k] = e[k], r), {}));
+                        });
+                        $('#dict-' + index + ' pre')
+                            .jsonViewer(entries, {
+                                collapsed: false,
+                                rootCollapsable: false,
+                                withQuotes: false,
+                                withLinks: false
+                            });
+                        $('#dict-' + index).show();
+                    })
+                } catch (e) {}
+
             </script>
 <!-- ------------------------------------------  back card ------------------------------------------  -->
         </div>
