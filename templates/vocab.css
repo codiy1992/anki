@@ -79,8 +79,8 @@
     background-color: rgb(200, 200, 200);
     padding-top: 10px;
     padding-bottom: 30px;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 5px;
+    padding-right: 5px;
     color: #016ea6;
     font-size: 22px;
     text-align: left;
@@ -100,7 +100,23 @@
     color: rgb(30, 42, 83);
 }
 
-.back-body pre {
+.back-body .entry .word {
+    font-size: 24px;
+    color: rgb(0, 0, 0);
+}
+.back-body .entry .pronunciation {
+    font-size: 18px;
+    color: #999;
+}
+.back-body .entry .pronunciation a {
+    font-size: 18px;
+    color: rgb(173, 92, 38);
+}
+.back-body .entry .pos {
+    font-size: 18px;
+    color: rgb(31, 43, 80);
+}
+.back-body .entry pre {
     font-size: 20px;
     overflow: scroll;
     -ms-overflow-style: none; /* IE and Edge */

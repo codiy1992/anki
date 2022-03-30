@@ -95,7 +95,7 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
 
             <link href="https://s3.codiy.net/anki/static/json-viewer/jquery.json-viewer.css" rel="stylesheet" />
-            <script src="https://s3.codiy.net/anki/static/json-viewer/jquery.json-viewer.js" ></script>
+            <!-- <script src="https://s3.codiy.net/anki/static/json-viewer/jquery.json-viewer.js" ></script> -->
 
             <div class="back">
                 <div class="back-head">
@@ -105,10 +105,21 @@
                   <div class="part-of-speech">
                       verb [T]
                   </div>
-                  <div class="transcriptions">
-                       /tens/
-                  </div>
-
+                  <div id="ipa"></div>
+                  <script type="text/javascript">
+                        (function($){
+                            let word = "prevent".replace(/ /gi, '-').toLowerCase();
+                            ipa = `<a onclick="this.firstChild.play()">
+                                     <audio preload="none">
+                                         <source type="audio/mpeg"
+                                                src="https://s3.codiy.net/dictionary/cambridge/${word}/us-00.mp3">
+                                         <source type="audio/ogg"
+                                                src="https://s3.codiy.net/dictionary/cambridge/${word}/us-00.ogg">
+                                     </audio>/{{IPAs}}/
+                              </a>`;
+                            $('#ipa').append(ipa);
+                        })(jQuery);
+                  </script>
                 </div>
 
                 <div class="back-body">
@@ -156,12 +167,12 @@
                      data-allowfullscreen="true"
                      data-navposition="top"
                      data-nav="thumbs">
-                      <img src="https://img.codiy.net/english/2021/07/1e2d81d1591f9f4a552831aba6f918971626681905.jpg">
-                      <img src="https://img.codiy.net/english/2021/07/4aa71d2e6069cf39afb26d0542e5aa781627184985.jpg">
-                      <img src="https://img.codiy.net/english/2021/07/5cdc4a37283788c24765e901b7b506661627201628.jpg">
-                      <img src="https://img.codiy.net/english/2021/07/7d401f6e21252900f0fb5fb5aea8cbbb1627214249.jpg">
-                      <img src="https://img.codiy.net/english/2021/07/6ecc90ab03ef650b5fb53d66ee0639691627135460.jpg">
-                      <img src="https://img.codiy.net/english/2021/07/22cb94d66e79cfa1d3b8319053a4b95f1627128852.jpg">
+                      <!-- <img src="https://img.codiy.net/english/2021/07/1e2d81d1591f9f4a552831aba6f918971626681905.jpg"> -->
+                      <!-- <img src="https://img.codiy.net/english/2021/07/4aa71d2e6069cf39afb26d0542e5aa781627184985.jpg"> -->
+                      <!-- <img src="https://img.codiy.net/english/2021/07/5cdc4a37283788c24765e901b7b506661627201628.jpg"> -->
+                      <!-- <img src="https://img.codiy.net/english/2021/07/7d401f6e21252900f0fb5fb5aea8cbbb1627214249.jpg"> -->
+                      <!-- <img src="https://img.codiy.net/english/2021/07/6ecc90ab03ef650b5fb53d66ee0639691627135460.jpg"> -->
+                      <!-- <img src="https://img.codiy.net/english/2021/07/22cb94d66e79cfa1d3b8319053a4b95f1627128852.jpg"> -->
                   </div>
                   <div class="raw-json">
                       <style>
@@ -169,44 +180,83 @@
                             padding: 0px
                         }
                         ul.json-dict, ol.json-array {
-                            padding-left: 0.5em;
+                            padding-left: 1em;
                         }
                       </style>
                       <div id="dict-0" style="display: none">
-                          <div class="field">Cambridge Advanced Learner's Dictionary</div>
-                          <pre></pre>
+                          <div class="field">Learner:</div>
                       </div>
                       <div id="dict-1" style="display: none">
-                          <div class="field">Cambridge Academic Content Dictionary</div>
-                          <pre></pre>
+                          <div class="field">Intermediate:</div>
                       </div>
                       <div id="dict-2" style="display: none">
-                          <div class="field">Cambridge Business English Dictionary</div>
-                          <pre></pre>
+                          <div class="field">Business:</div>
                       </div>
                   </div>
                 </div>
             </div>
             <script type="text/javascript">
-                try {
-                    var dataStr = `[{"dictionary":"Cambridge Advanced Learner's Dictionary \u0026 Thesaurus","word":"prevent","entries":[{"word":"prevent","isIdiom":false,"partOfSpeechs":["verb"],"posLabels":["[T]"],"pronunciations":{"uk":{"ipa":"prɪˈvent","mp3":"https://dictionary.cambridge.org/us/media/english/uk_pron/u/ukp/ukpre/ukprete020.mp3","ogg":"https://dictionary.cambridge.org/us/media/english/uk_pron_ogg/u/ukp/ukpre/ukprete020.ogg"},"us":{"ipa":"prɪˈvent","mp3":"https://dictionary.cambridge.org/us/media/english/us_pron/e/eus/eus73/eus73705.mp3","ogg":"https://dictionary.cambridge.org/us/media/english/us_pron_ogg/e/eus/eus73/eus73705.ogg"}},"definitions":[{"definition":"to stop something from happening or someone from doing something.","images":null,"examples":["Label your suitcases to prevent confusion.","[+ -ing verb] His disability prevents him (from) driving."],"thesauruses":[{"word":"prevent","example":"Vaccination will prevent the spread of the disease."},{"word":"avoid","example":"Label the boxes to avoid confusion."},{"word":"stop","example":"This should stop any further trouble."},{"word":"avert","example":"We had to act quickly to avert disaster."},{"word":"prohibit","example":"Behavioral problems in the classroom prohibit learning."},{"word":"check","example":"Children are being vaccinated in an attempt to check the spread of the disease."}]}],"examples":["The police seem to be powerless to prevent these attacks.","She would go over the accident again and again in her mind, wishing that she could somehow have prevented it.","A block in the pipe was preventing the water from coming through.","Fierce winds prevented the race from taking place.","The law has done little to prevent racial discrimination and inequality."]}],"version":"2022.03.27.1","date":"2022-03-28"},{"dictionary":"Cambridge Academic Content Dictionary(Intermediate English)","word":"prevent","entries":[{"word":"prevent","isIdiom":false,"partOfSpeechs":["verb","adjective","noun"],"posLabels":["[T]","[U]"],"pronunciations":{"us":{"ipa":"prɪˈvent","mp3":"https://dictionary.cambridge.org/us/media/english/us_pron/e/eus/eus73/eus73705.mp3","ogg":"https://dictionary.cambridge.org/us/media/english/us_pron_ogg/e/eus/eus73/eus73705.ogg"}},"definitions":[{"definition":"to stop something from happening or someone from doing something.","images":null,"examples":["The police tried to prevent him from leaving.","Can this type of accident be prevented?"],"thesauruses":null}],"examples":null}],"version":"2022.03.27.1","date":"2022-03-28"}]`;
-                    var data = JSON.parse(dataStr);
-                    data.forEach((element, index) => {
-                        var entries = [];
-                        element['entries'].forEach(e => {
-                            entries.push(Object.keys(e).sort().reduce((r, k) => (r[k] = e[k], r), {}));
-                        });
-                        $('#dict-' + index + ' pre')
-                            .jsonViewer(entries, {
-                                collapsed: false,
-                                rootCollapsable: false,
-                                withQuotes: false,
-                                withLinks: false
-                            });
-                        $('#dict-' + index).show();
-                    })
-                } catch (e) {}
 
+                // json-viewer source code
+                (function($){function isCollapsable(arg){return arg instanceof Object&&Object.keys(arg).length>0}function isUrl(string){var urlRegexp=/^(https?:\/\/|ftps?:\/\/)?([a-z0-9%-]+\.){1,}([a-z0-9-]+)?(:(\d{1,5}))?(\/([a-z0-9\-._~:/?#[\]@!$&'()*+,;=%]+)?)?$/i;return urlRegexp.test(string)}function json2html(json,options){var html="";if(typeof json==="string"){json=json.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/'/g,"&apos;").replace(/"/g,"&quot;");if(options.withLinks&&isUrl(json)){html+='<a href="'+json+'" class="json-string" target="_blank">'+json+"</a>"}else{json=json.replace(/&quot;/g,"\\&quot;");html+='<span class="json-string">"'+json+'"</span>'}}else{if(typeof json==="number"){html+='<span class="json-literal">'+json+"</span>"}else{if(typeof json==="boolean"){html+='<span class="json-literal">'+json+"</span>"}else{if(json===null){html+='<span class="json-literal">null</span>'}else{if(json instanceof Array){if(json.length>0){html+='[<ol class="json-array">';for(var i=0;i<json.length;++i){html+="<li>";if(isCollapsable(json[i])){html+='<a href class="json-toggle"></a>'}html+=json2html(json[i],options);if(i<json.length-1){html+=","}html+="</li>"}html+="</ol>]"}else{html+="[]"}}else{if(typeof json==="object"){var keyCount=Object.keys(json).length;if(keyCount>0){html+='{<ul class="json-dict">';for(var key in json){if(Object.prototype.hasOwnProperty.call(json,key)){html+="<li>";var keyRepr=options.withQuotes?'<span class="json-string">"'+key+'"</span>':key;if(isCollapsable(json[key])){html+='<a href class="json-toggle">'+keyRepr+"</a>"}else{html+=keyRepr}html+=": "+json2html(json[key],options);if(--keyCount>0){html+=","}html+="</li>"}}html+="</ul>}"}else{html+="{}"}}}}}}}return html}$.fn.jsonViewer=function(json,options){options=Object.assign({},{collapsed:false,rootCollapsable:true,withQuotes:false,withLinks:true},options);return this.each(function(){var html=json2html(json,options);if(options.rootCollapsable&&isCollapsable(json)){html='<a href class="json-toggle"></a>'+html}$(this).html(html);$(this).addClass("json-document");$(this).off("click");$(this).on("click","a.json-toggle",function(){var target=$(this).toggleClass("collapsed").siblings("ul.json-dict, ol.json-array");target.toggle();if(target.is(":visible")){target.siblings(".json-placeholder").remove()}else{var count=target.children("li").length;var placeholder=count+(count>1?" items":" item");target.after('<a href class="json-placeholder">'+placeholder+"</a>")}return false});$(this).on("click","a.json-placeholder",function(){$(this).siblings("a.json-toggle").click();return false});if(options.collapsed==true){$(this).find("a.json-toggle").click()}})}})(jQuery);
+
+
+                //
+                (function($){
+                    word = `prevent`.replace(/ /gi, '-').toLowerCase();
+                    fetch('https://s3.codiy.net/dictionary/cambridge/'+word+'/data.json').then(function(response){
+                        if (response.status == 200) {
+                            response.json().then(function(data) {
+                                data.forEach((element, index) => {
+                                    var entries = [];
+                                    element.entries.forEach(e => {
+                                        entry = "<div class='entry'><span class='word'>" + e.word + "</span><br/>";
+                                        if (e.pronunciations.hasOwnProperty('us')) {
+                                            entry += '<span class="pronunciation">US: <a onclick="this.firstChild.play()"><audio preload="none">' +
+                                                '<source type="audio/mpeg" src="https://s3.codiy.net/' + e.pronunciations.us.mp3 + '">' +
+                                                '<source type="audio/ogg" src="https://s3.codiy.net/' + e.pronunciations.us.ogg + '">' +
+                                                '</audio>/' + e.pronunciations.us.ipa + '/</a></span>';
+                                        }
+                                        if (e.pronunciations.hasOwnProperty('uk')) {
+                                            if (e.pronunciations.hasOwnProperty('us')) {
+                                                entry += "&nbsp;&nbsp;";
+                                            }
+                                            entry += '<span class="pronunciation">UK: <a onclick="this.firstChild.play()"><audio preload="none">' +
+                                                '<source type="audio/mpeg" src="https://s3.codiy.net/' + e.pronunciations.uk.mp3 + '">' +
+                                                '<source type="audio/ogg" src="https://s3.codiy.net/' + e.pronunciations.uk.ogg + '">' +
+                                                '</audio>/' + e.pronunciations.uk.ipa + '/</a></span>';
+                                        }
+                                        entry += '<br/>';
+                                        if (e.partOfSpeechs) {
+                                            entry += '<span class="pos">' + e.partOfSpeechs.join(',')
+                                            if (e.posLabels) {
+                                                entry += "  " + e.posLabels.join(',')
+                                            }
+                                            entry += "</span>"
+                                        }
+                                        entry += "<pre></pre></div>";
+                                        $('#dict-' + index).append(entry);
+
+                                        if (e.definitions) {
+                                            e.definitions.forEach(d => {
+                                                delete(d.images);
+                                            });
+                                            $('#dict-' + index + ' pre').jsonViewer(e.definitions, {
+                                                collapsed: false,
+                                                rootCollapsable: false,
+                                                withQuotes: false,
+                                                withLinks: false
+                                            });
+                                        }
+                                    });
+                                    $('#dict-' + index).show();
+                                })
+                            });
+                        }
+                    }).catch(function(err) {
+                        console.log('Fetch Error :-S', err);
+                    });
+                })(jQuery);
             </script>
 <!-- ------------------------------------------  back card ------------------------------------------  -->
         </div>
