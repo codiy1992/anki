@@ -108,15 +108,13 @@
                   <div id="ipa"></div>
                   <script type="text/javascript">
                         (function($){
-                            let word = "prevent".replace(/ /gi, '-').toLowerCase();
-                            ipa = `<a onclick="this.firstChild.play()">
-                                     <audio preload="none">
+                            word = "prevent".replace(/ /gi, '-').toLowerCase();
+                            ipa = `<a onclick="this.firstChild.play()"><audio preload="none" autoplay>
                                          <source type="audio/mpeg"
                                                 src="https://s3.codiy.net/dictionary/cambridge/${word}/us-00.mp3">
                                          <source type="audio/ogg"
                                                 src="https://s3.codiy.net/dictionary/cambridge/${word}/us-00.ogg">
-                                     </audio>/{{IPAs}}/
-                              </a>`;
+                                     </audio>/prɪˈvent/</a>`;
                             $('#ipa').append(ipa);
                         })(jQuery);
                   </script>
